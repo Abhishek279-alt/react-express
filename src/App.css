@@ -1,38 +1,55 @@
-.App {
-  text-align: center;
+:root {
+  --text-blur: blur(0.5px);
+  --bg-blur: blur(2px);
+}
+body {
+  background: rgb(222, 232, 234);
+  background-image: url("./assets/noise.png");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.news-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 5vw;
+  font-weight: 800;
+  font-style: italic;
+  opacity: 0.85;
+  filter: var(--text-blur);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.today-date {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-weight: 500;
+  opacity: 0.85;
+  filter: var(--text-blur);
+}
+
+.news-nav {
+  background-color: rgba(228, 185, 128, 0.868);
+  filter: var(--text-blur);
+}
+
+.nav-link {
+  color: black !important;
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  font-weight: 600;
+}
+
+.navbar-toggler:focus {
+  border-radius: 0px !important;
+}
+
+@media (min-width: 991px) {
+  .navbar-collapse {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  .nav-item {
+    padding: 0 3vw;
   }
 }
