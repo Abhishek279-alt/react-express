@@ -18,6 +18,7 @@ body {
 
 .today-date {
   font-family: "Newsreader", serif;
+  font-size: 2vw;
   font-style: italic;
   font-weight: 500;
   opacity: 0.85;
@@ -52,4 +53,21 @@ body {
   .nav-item {
     padding: 0 3vw;
   }
+}
+
+.pagination button {
+  background-color: transparent;
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 3vh;
+  font-style: italic;
+  margin: 0 0.5rem;
+  outline: none;
+  border: none;
+  opacity: 0.7;
+}
+
+.pagination button:hover {
+  text-decoration: underline;
 }

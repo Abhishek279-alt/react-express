@@ -3,10 +3,12 @@ import { Route, Routes, Link } from "react-router-dom";
 import WorldNews from "./WorldNews";
 import NationalNews from "./NationalNews";
 import SportsNews from "./SportsNews";
+import AllNews from "./AllNews";
 
 const Homepage = () => {
   const dt = new Date();
   let currDate = dt.toDateString();
+
   return (
     <div className="container-fluid mt-2">
       <header className="text-center my-2">
@@ -38,7 +40,16 @@ const Homepage = () => {
                       aria-current="page"
                       to="/"
                     >
-                      BBC World News
+                      <i className="fa-sharp fa-solid fa-house"></i> Home
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link active"
+                      aria-current="page"
+                      to="/world_news"
+                    >
+                      World News
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -57,11 +68,12 @@ const Homepage = () => {
           </nav>
         </div>
       </div>
-      <div className="container news-container my-3">
+      <div className="container news-container my-3 mx-auto">
         <Routes>
-          <Route path="/" element={<WorldNews />} />
+          <Route path="/world_news" element={<WorldNews />} />
           <Route path="/national_news" element={<NationalNews />} />
           <Route path="/sports_news" element={<SportsNews />} />
+          <Route path="/" element={<AllNews />} />
         </Routes>
       </div>
     </div>

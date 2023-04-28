@@ -36,3 +36,25 @@
   color: black;
   filter: var(--text-blur);
 }
+
+.news-search {
+  display: flex;
+  justify-content: center;
+}
+
+.news-search form {
+  background-color: whitesmoke;
+  opacity: 0.75;
+  width: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.43);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#nw_search {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  width: 90%;
+}

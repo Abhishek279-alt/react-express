@@ -3,14 +3,19 @@ import axios from "axios";
 import "./news.css";
 import NewsCard from "./NewsCard";
 import { Puff } from "react-loader-spinner";
+import { REACT_APP_API_KEY, pageSize } from "../config";
 
 const SportsNews = () => {
   const [sportsNews, setSportsNews] = useState([]);
   const [isloading, setIsLoading] = useState(true);
+  const [pageNo, setPageNo] = useState(1);
+  const results = sportsNews.totalResults;
+  const totalPages = Math.ceil(results / pageSize);
+  // console.log(totalPages);
   const getSportsNews = async () => {
     try {
       const response = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=${process.env.REACT_APP_API_KEY}`
+        `https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=${REACT_APP_API_KEY}&page=${pageNo}&pageSize=${pageSize}`
       );
       console.log(response);
       setSportsNews(response.data);
@@ -20,8 +25,24 @@ const SportsNews = () => {
     }
   };
 
-  useEffect(() => {
+  const handlePrev = async () => {
+    setPageNo(pageNo - 1);
+    console.log(pageNo);
     getSportsNews();
+  };
+
+  const handleNext = async () => {
+    setPageNo(pageNo + 1);
+    console.log(pageNo);
+    getSportsNews();
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      getSportsNews();
+    }, 1000);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isloading) {
@@ -41,11 +62,24 @@ const SportsNews = () => {
     );
   } else {
     return (
-      <div className="container-fluid news-list">
-        {sportsNews.articles?.map((news) => {
-          let newsId = sportsNews.articles.indexOf(news);
-          return <NewsCard key={newsId} newsArticles={news} />;
-        })}
+      <div className="container-fluid d-flex flex-column justify-content-center">
+        <div className="news-list">
+          {sportsNews.articles?.map((news) => {
+            let newsId = sportsNews.articles.indexOf(news);
+            return <NewsCard key={newsId} newsArticles={news} />;
+          })}
+        </div>
+        <div className="pagination d-flex justify-content-center my-2">
+          <button onClick={handlePrev} disabled={pageNo <= 1 ? "true" : false}>
+            &#171;prev
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={pageNo >= totalPages ? "true" : false}
+          >
+            next&#187;
+          </button>
+        </div>
       </div>
     );
   }
