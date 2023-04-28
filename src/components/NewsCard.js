@@ -4,9 +4,11 @@ import { WhatsappShareButton, WhatsappIcon } from "react-share";
 
 const NewsCard = (props) => {
   const news = props.newsArticles;
+  const newsDate = news.publishedAt;
+  console.log(newsDate);
   const bgColor = "rgba(43, 42, 42, 0.6)";
   const bgstyle = {};
-  bgstyle.fill = bgColor;
+  bgstyle.fill = bgColor; // changes background colour of whatsapp icon
   return (
     <>
       <div className="card news-card">
@@ -45,6 +47,9 @@ const NewsCard = (props) => {
                 <WhatsappIcon size={20} bgStyle={bgstyle} />
               </WhatsappShareButton>
             </span>
+            <p className="mt-1">
+              Published: {newsDate.slice(0, 10)},{newsDate.slice(11, 16)}
+            </p>
           </p>
         </div>
       </div>

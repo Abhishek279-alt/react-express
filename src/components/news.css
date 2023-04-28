@@ -13,7 +13,7 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (min-width: 420px) and (max-width: 576px) {
   .news-list {
     padding: 0 25px;
   }
@@ -57,4 +57,10 @@
   background-color: transparent;
   border: none;
   width: 90%;
+}
+
+@media (min-width: 360px) and (max-width: 419px) {
+  .news-list {
+    padding: 0 0px;
+  }
 }

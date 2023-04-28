@@ -13,8 +13,8 @@ const AllNews = () => {
   const [pageNo, setPageNo] = useState(1);
   const results = allNews.totalResults;
   const totalPages = Math.ceil(results / pageSize);
-  // console.log(totalPages);
 
+  // Fetch News data on render
   const getAllNews = async () => {
     try {
       const response = await axios.get(
@@ -30,12 +30,14 @@ const AllNews = () => {
     }
   };
 
+  // Fetch previous aricles
   const handlePrev = async () => {
     setPageNo(pageNo - 1);
     console.log(pageNo);
     getAllNews();
   };
 
+  // Fetch next aricles
   const handleNext = async () => {
     setPageNo(pageNo + 1);
     console.log(pageNo);
@@ -52,6 +54,7 @@ const AllNews = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput, keyword]);
 
+  // Displays a spinner while loading page
   if (isloading) {
     return (
       <div className="container-fluid d-flex justify-content-center">
@@ -68,6 +71,7 @@ const AllNews = () => {
       </div>
     );
   } else {
+    // Displays news articles
     return (
       <React.Fragment>
         <div className="news-search d-flex align-itmes-center justify-content-center my-3">

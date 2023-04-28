@@ -11,7 +11,8 @@ const NationalNews = () => {
   const [pageNo, setPageNo] = useState(1);
   const results = actualData.totalResults;
   const totalPages = Math.ceil(results / pageSize);
-  // console.log(totalPages);
+
+  // Fetch News data on render
   const getNationalNews = async () => {
     try {
       const response = await axios.get(
@@ -25,12 +26,14 @@ const NationalNews = () => {
     }
   };
 
+  // Fetch previous aricles
   const handlePrev = async () => {
     setPageNo(pageNo - 1);
     console.log(pageNo);
     getNationalNews();
   };
 
+  // Fetch next aricles
   const handleNext = async () => {
     setPageNo(pageNo + 1);
     console.log(pageNo);
@@ -45,6 +48,7 @@ const NationalNews = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Displays a spinner while loading page
   if (isloading) {
     return (
       <div className="container-fluid d-flex justify-content-center">
@@ -61,6 +65,7 @@ const NationalNews = () => {
       </div>
     );
   } else {
+    // Displays news articles
     return (
       <div className="container-fluid d-flex flex-column justify-content-center">
         <div className="news-list">
